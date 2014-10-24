@@ -87,11 +87,11 @@ For example, when building for Windows, the manifest generated and put into the 
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-[npm-url]: https://npmjs.org/package/gulp-bless
-[npm-image]: http://img.shields.io/npm/v/gulp-bless.svg?style=flat
+[npm-url]: https://npmjs.org/package/platform-overrides
+[npm-image]: http://img.shields.io/npm/v/platform-overrides.svg?style=flat
 
-[travis-url]: http://travis-ci.org/adam-lynch/gulp-bless
-[travis-image]: http://img.shields.io/travis/adam-lynch/gulp-bless.svg?style=flat
+[travis-url]: http://travis-ci.org/adam-lynch/platform-overrides
+[travis-image]: http://img.shields.io/travis/adam-lynch/platform-overrides.svg?style=flat
 
-[depstat-url]: https://david-dm.org/adam-lynch/gulp-bless
-[depstat-image]: https://david-dm.org/adam-lynch/gulp-bless.svg?style=flat
+[depstat-url]: https://david-dm.org/adam-lynch/platform-overrides
+[depstat-image]: https://david-dm.org/adam-lynch/platform-overrides.svg?style=flat
