@@ -1,0 +1,23 @@
+{
+  "name": "platform-overrides",
+  "version": "0.0.1",
+  "description": "Allows you to specify platform-specific manifest values. Work with JSON or plain objects. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Adam Lynch <contact@adamlynch.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "~1.8.0",
+    "gulp": "~3.8.9",
+    "gulp-coffee": "~2.2.0",
+    "gulp-load-plugins": "~0.7.0",
+    "gulp-mocha": "~1.1.1",
+    "chai": "~1.9.2",
+    "gulp-rename": "~1.2.0"
+  },
+  "dependencies": {
+    "lodash": "~2.4.1"
+  }
+}
