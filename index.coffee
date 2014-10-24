@@ -5,7 +5,7 @@ _ = require 'lodash'
 # Returns a {String}
 detectPlatform = ->
     platforms =
-        darwin: -> 'mac'
+        darwin: -> 'osx'
         win: -> 'win'
         linux: -> 'linux' + if process.arch is 'ia32' then 32 else 64
 
@@ -13,7 +13,7 @@ detectPlatform = ->
 
 # args - {Object}
 #       :options - {Object} or {String}, depending on the `objectMode` parameter
-#       :platform - Optional {String}. One of the following: [mac, win, linux32, linux64]. If not passed, current
+#       :platform - Optional {String}. One of the following: [osx, win, linux32, linux64]. If not passed, current
 #                   platform is detected
 #       :objectMode - Optional {Boolean}. If `true`, `options` will have to passed as an {Object} and the return value
 #                    will be an {Object} too

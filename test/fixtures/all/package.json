@@ -18,7 +18,7 @@
             "abc": [1],
             "def": {"x":1}
         },
-        "mac": {
+        "osx": {
             "main": "other.html",
             "x": ["y", "z"],
             "abc": 2

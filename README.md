@@ -19,8 +19,8 @@ npm install platform-overrides
 var platformOverrides = require('platform-overrides');
 
 var result = platformOverrides({
-        options: '{"a": 0, "platformOverrides": { "mac": { "a": 1 } } }',
-        platform: 'mac'
+        options: '{"a": 0, "platformOverrides": { "osx": { "a": 1 } } }',
+        platform: 'osx'
     });
 // result will be a JSON string but the "a" property will contain 1 now
 ```
@@ -35,7 +35,9 @@ var result = platformOverrides({
 Object or String, depending on `objectMode` parameter
 
 #### platform
-(Optional) String. One of the following: [mac, win, linux32, linux64]. If not passed, the current platform is detected
+(Optional) String. One of the following: [osx, win, linux32, linux64]. If not passed, the current platform is detected.
+
+Note: `osx` is not `mac` just for the sake of backwards compatibility with [node-webkit-builder](https://github.com/mllrsohn/node-webkit-builder).
 
 ## Example
 
