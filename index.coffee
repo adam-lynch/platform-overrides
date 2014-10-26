@@ -9,7 +9,7 @@ detectPlatform = ->
         win: -> 'win'
         linux: -> 'linux' + if process.arch is 'ia32' then 32 else 64
 
-    return platforms[os.platform()]
+    return platforms[os.platform()]()
 
 # args - {Object}
 #       :options - {Object} or {String}
@@ -26,6 +26,7 @@ module.exports = (args, cb) ->
         options = if objectMode then args.options else JSON.parse args.options
     catch err
         return cb err, null
+
 
     if options.platformOverrides?
         result = _.clone options, true

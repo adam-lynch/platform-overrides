@@ -1,4 +1,4 @@
-platformOverrides = require '../'
+platformOverrides = require '../index.coffee'
 chai = require 'chai'
 expect = chai.expect
 fs = require 'fs'
@@ -31,9 +31,16 @@ describe 'platform-overrides', ->
                 expect(result).to.be.an 'object'
                 expect(result).to.deep.equal JSON.parse getExpected 'all', platform
 
-    it 'should support not passing a platform', ->
-        platformOverrides
+    it 'should support not passing a platform (auto-detect)', ->
+        # If a manifest contains overrides for every platform, then the result shouldn't just be the base options
+
+        args =
             options: JSON.parse getFixture 'all/package.json'
+
+        platformOverrides args, (err, result) ->
+            expect(result).to.be.an 'object'
+            expect(result).not.to.deep.equal JSON.parse getExpected 'all', 'none'
+
 
     it 'should apply overrides correctly for appropriate platforms and strip platformOverrides regardless', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
