@@ -15,16 +15,17 @@ detectPlatform = ->
 #       :options - {Object} or {String}
 #       :platform - Optional {String}. One of the following: [osx, win, linux32, linux64]. If not passed, current
 #                   platform is detected
+# cb - {Function}. Called with Error and result arguments
 # Returns an {String} or {Object}, depending on `objectMode` parameter
-module.exports = (args) ->
+module.exports = (args, cb) ->
+    cb = (->) unless cb?
     platform = if args.platform then args.platform else detectPlatform()
-
     objectMode = _.isPlainObject args.options
 
     try
         options = if objectMode then args.options else JSON.parse args.options
     catch err
-        return err
+        return cb err, null
 
     if options.platformOverrides?
         result = _.clone options, true
@@ -41,6 +42,6 @@ module.exports = (args) ->
             )
         delete result.platformOverrides
 
-        return if objectMode then result else JSON.stringify result
+        cb null, if objectMode then result else JSON.stringify result
     else
-        return args.options
+        cb null, args.options

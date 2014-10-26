@@ -21,29 +21,34 @@ var platformOverrides = require('platform-overrides');
 var result = platformOverrides({
         options: '{"a": 0, "platformOverrides": { "osx": { "a": 1 } } }',
         platform: 'osx'
-    });
+    }, function(err, result){
+        if(err) //...
 
-if(result instanceof Error) {
-    //....
-}
-else {
-    // result will be a JSON string but the "a" property will contain 1 now
-}
+        // result will be a JSON string but the "a" property will contain 1 now
+    });
 ```
 
 
+## API
+
+`platformOverrides(options, callback)`
+
+**Returns** an Object or String, depending on what the type of the `options` property passed.
+
 ### Options
 
-**Returns** an Object or String, depending on what the type of the `options` property passed, or an Error on failure.
-
 #### options
-Object or String
+Object or String. (i.e. `options.options`)
 
 #### platform
 (Optional) String. One of the following: [osx, win, linux32, linux64]. If not passed, the current platform is detected.
 
 Note: `osx` is not `mac` just for the sake of backwards compatibility with [node-webkit-builder](https://github.com/mllrsohn/node-webkit-builder).
 
+
+### Callback
+
+Function called on completion with error and result arguments; e.g. `function(err, result){}`
 
 ## Example
 

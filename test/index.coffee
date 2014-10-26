@@ -13,21 +13,23 @@ getExpected = (pathSegment, basename) ->
 describe 'platform-overrides', ->
     it 'should apply overrides correctly for each platform', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
-            result = platformOverrides
+            args =
                 options: getFixture 'all/package.json'
                 platform: platform
 
-            expect(result).to.be.a 'string'
-            expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', platform
+            platformOverrides args, (err, result) ->
+                expect(result).to.be.a 'string'
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', platform
 
     it 'should support passing an object and then return an object', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
-            result = platformOverrides
+            args =
                 options: JSON.parse getFixture 'all/package.json'
                 platform: platform
 
-            expect(result).to.be.an 'object'
-            expect(result).to.deep.equal JSON.parse getExpected 'all', platform
+            platformOverrides args, (err, result) ->
+                expect(result).to.be.an 'object'
+                expect(result).to.deep.equal JSON.parse getExpected 'all', platform
 
     it 'should support not passing a platform', ->
         platformOverrides
@@ -35,27 +37,30 @@ describe 'platform-overrides', ->
 
     it 'should apply overrides correctly for appropriate platforms and strip platformOverrides regardless', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
-            result = platformOverrides
+            args =
                 options: getFixture 'oneOveriddenRestNot/package.json'
                 platform: platform
 
-            expect(JSON.parse result).to.deep.equal JSON.parse getExpected(
-                'oneOveriddenRestNot',
-                if platform is 'osx' then platform else 'rest'
-            )
+            platformOverrides args, (err, result) ->
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected(
+                    'oneOveriddenRestNot',
+                    if platform is 'osx' then platform else 'rest'
+                )
 
     it 'should leave file as is if platformOverrides does not exist', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
             contents = getFixture 'none/package.json'
-
-            result = platformOverrides
+            args =
                 options: contents
                 platform: platform
 
-            expect(result).to.equal contents
+            platformOverrides args, (err, result) ->
+                expect(result).to.equal contents
 
     it 'should return an error if invalid JSON is passed', ->
-        result = platformOverrides
+        args =
             options: '{a:0'
 
-        expect(result instanceof Error).to.equal true
+        platformOverrides args, (err, result) ->
+            expect(err instanceof Error).to.equal true
+            expect(result).to.equal null
