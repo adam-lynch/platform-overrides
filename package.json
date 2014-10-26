@@ -1,6 +1,6 @@
 {
   "name": "platform-overrides",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Allows you to specify platform-specific manifest values. Work with JSON or plain objects. ",
   "main": "index.js",
   "scripts": {
