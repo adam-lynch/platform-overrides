@@ -22,13 +22,19 @@ var result = platformOverrides({
         options: '{"a": 0, "platformOverrides": { "osx": { "a": 1 } } }',
         platform: 'osx'
     });
-// result will be a JSON string but the "a" property will contain 1 now
+
+if(result instanceof Error) {
+    //....
+}
+else {
+    // result will be a JSON string but the "a" property will contain 1 now
+}
 ```
 
 
 ### Options
 
-**Returns** an Object or String, depending on what the type of the `options` property passed.
+**Returns** an Object or String, depending on what the type of the `options` property passed, or an Error on failure.
 
 #### options
 Object or String

@@ -20,7 +20,11 @@ module.exports = (args) ->
     platform = if args.platform then args.platform else detectPlatform()
 
     objectMode = _.isPlainObject args.options
-    options = if objectMode then args.options else JSON.parse args.options
+
+    try
+        options = if objectMode then args.options else JSON.parse args.options
+    catch err
+        return err
 
     if options.platformOverrides?
         result = _.clone options, true

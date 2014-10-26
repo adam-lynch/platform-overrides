@@ -53,3 +53,9 @@ describe 'platform-overrides', ->
                 platform: platform
 
             expect(result).to.equal contents
+
+    it 'should return an error if invalid JSON is passed', ->
+        result = platformOverrides
+            options: '{a:0'
+
+        expect(result instanceof Error).to.equal true
