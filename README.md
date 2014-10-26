@@ -7,6 +7,8 @@ The platform-specific options will override the others only when "building" for 
 
 This was originally created with [node-webkit](http://github.com/rogerwang/node-webkit) in mind.
 
+Need a Gulp plugin? See [gulp-platform-overrides](http://github.com/adam-lynch/gulp-platform-overrides).
+
 ## Installation
 
 ```shell
