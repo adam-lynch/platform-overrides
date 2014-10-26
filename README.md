@@ -1,7 +1,7 @@
 platform-overrides [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
 ==========
 
-Allows you to apply specify platform-specific manifest values. Works with JSON or plain objects. 
+Apply platform-specific manifest values. Works with JSON or plain objects. 
                      
 The platform-specific options will override the others only when "building" for that platform and the `platformOverrides` property will be removed.
 
