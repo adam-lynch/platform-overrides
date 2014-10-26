@@ -20,7 +20,7 @@ var platformOverrides = require('platform-overrides');
 
 var result = platformOverrides({
         options: '{"a": 0, "platformOverrides": { "osx": { "a": 1 } } }',
-        platform: 'osx'
+        platform: 'osx' // auto-detected if omitted
     }, function(err, result){
         if(err) //...
 
