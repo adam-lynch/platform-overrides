@@ -20,12 +20,11 @@ describe 'platform-overrides', ->
             expect(result).to.be.a 'string'
             expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', platform
 
-    it 'should support passing and returning objects', ->
+    it 'should support passing an object and then return an object', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
             result = platformOverrides
                 options: JSON.parse getFixture 'all/package.json'
                 platform: platform
-                objectMode: true
 
             expect(result).to.be.an 'object'
             expect(result).to.deep.equal JSON.parse getExpected 'all', platform
@@ -33,7 +32,6 @@ describe 'platform-overrides', ->
     it 'should support not passing a platform', ->
         platformOverrides
             options: JSON.parse getFixture 'all/package.json'
-            objectMode: true
 
     it 'should apply overrides correctly for appropriate platforms and strip platformOverrides regardless', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']

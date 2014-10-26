@@ -12,16 +12,14 @@ detectPlatform = ->
     return platforms[os.platform()]
 
 # args - {Object}
-#       :options - {Object} or {String}, depending on the `objectMode` parameter
+#       :options - {Object} or {String}
 #       :platform - Optional {String}. One of the following: [osx, win, linux32, linux64]. If not passed, current
 #                   platform is detected
-#       :objectMode - Optional {Boolean}. If `true`, `options` will have to passed as an {Object} and the return value
-#                    will be an {Object} too
 # Returns an {String} or {Object}, depending on `objectMode` parameter
 module.exports = (args) ->
     platform = if args.platform then args.platform else detectPlatform()
 
-    objectMode = args.objectMode
+    objectMode = _.isPlainObject args.options
     options = if objectMode then args.options else JSON.parse args.options
 
     if options.platformOverrides?

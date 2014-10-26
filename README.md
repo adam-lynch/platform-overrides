@@ -28,16 +28,16 @@ var result = platformOverrides({
 
 ### Options
 
-#### objectMode
-(Optional) Boolean. If `true`, the `options` argument you pass will have to be an Object and the return value will be an Object too
+**Returns** an Object or String, depending on what the type of the `options` property passed.
 
 #### options
-Object or String, depending on `objectMode` parameter
+Object or String
 
 #### platform
 (Optional) String. One of the following: [osx, win, linux32, linux64]. If not passed, the current platform is detected.
 
 Note: `osx` is not `mac` just for the sake of backwards compatibility with [node-webkit-builder](https://github.com/mllrsohn/node-webkit-builder).
+
 
 ## Example
 
