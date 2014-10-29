@@ -2,14 +2,20 @@ os = require 'os'
 _ = require 'lodash'
 
 
+platforms =
+    darwin: -> 'osx'
+    win: -> 'win'
+    win32: -> 'win'
+    win64: -> 'win'
+    linux: -> 'linux' + if process.arch is 'ia32' then 32 else 64
+
 # Returns a {String}
 detectPlatform = ->
-    platforms =
-        darwin: -> 'osx'
-        win: -> 'win'
-        linux: -> 'linux' + if process.arch is 'ia32' then 32 else 64
-
     return platforms[os.platform()]()
+
+normalizePlatform = (platform) ->
+    return if platforms[platform]? then platforms[platform]() else platform
+
 
 # args - {Object}
 #       :options - {Object} or {String}
@@ -19,7 +25,7 @@ detectPlatform = ->
 # Returns an {String} or {Object}, depending on `objectMode` parameter
 module.exports = (args, cb) ->
     cb = (->) unless cb?
-    platform = if args.platform then args.platform else detectPlatform()
+    platform = if args.platform then normalizePlatform args.platform else detectPlatform()
     objectMode = _.isPlainObject args.options
 
     try

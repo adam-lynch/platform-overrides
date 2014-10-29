@@ -21,6 +21,16 @@ describe 'platform-overrides', ->
                 expect(result).to.be.a 'string'
                 expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', platform
 
+    it 'should apply windows overrides if os.platform() returns win32 / win64', ->
+        for platform in ['win32', 'win64']
+            args =
+                options: getFixture 'all/package.json'
+                platform: platform
+
+            platformOverrides args, (err, result) ->
+                expect(result).to.be.a 'string'
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', 'win'
+
     it 'should support passing an object and then return an object', ->
         for platform in ['osx', 'win', 'linux32', 'linux64']
             args =
