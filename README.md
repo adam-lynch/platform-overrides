@@ -1,5 +1,9 @@
-platform-overrides [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][depstat-image]][depstat-url]
+platform-overrides 
 ==========
+
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Windows Build Status][appveyor-image]][appveyor-url] [![Dependency Status][depstat-image]][depstat-url] 
+
+---
 
 Apply platform-specific manifest values. Works with JSON or plain objects. 
                      
@@ -107,6 +111,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [travis-url]: http://travis-ci.org/adam-lynch/platform-overrides
 [travis-image]: http://img.shields.io/travis/adam-lynch/platform-overrides.svg?style=flat
+
+[appveyor-url]: https://ci.appveyor.com/project/adam-lynch/platform-overrides/branch/master
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/iomo0qtm5k59jyw9/branch/master?svg=true
 
 [depstat-url]: https://david-dm.org/adam-lynch/platform-overrides
 [depstat-image]: https://david-dm.org/adam-lynch/platform-overrides.svg?style=flat
