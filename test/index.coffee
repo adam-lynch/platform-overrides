@@ -12,7 +12,7 @@ getExpected = (pathSegment, basename) ->
 
 describe 'platform-overrides', ->
     it 'should apply overrides correctly for each platform', ->
-        for platform in ['osx', 'win', 'linux32', 'linux64']
+        for platform in ['osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64']
             args =
                 options: getFixture 'all/package.json'
                 platform: platform
@@ -29,10 +29,10 @@ describe 'platform-overrides', ->
 
             platformOverrides args, (err, result) ->
                 expect(result).to.be.a 'string'
-                expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', 'win'
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected 'all', 'win32'
 
     it 'should support passing an object and then return an object', ->
-        for platform in ['osx', 'win', 'linux32', 'linux64']
+        for platform in ['osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64']
             args =
                 options: JSON.parse getFixture 'all/package.json'
                 platform: platform
@@ -53,7 +53,7 @@ describe 'platform-overrides', ->
 
 
     it 'should apply overrides correctly for appropriate platforms and strip platformOverrides regardless', ->
-        for platform in ['osx', 'win', 'linux32', 'linux64']
+        for platform in ['osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64']
             args =
                 options: getFixture 'oneOveriddenRestNot/package.json'
                 platform: platform
@@ -61,11 +61,11 @@ describe 'platform-overrides', ->
             platformOverrides args, (err, result) ->
                 expect(JSON.parse result).to.deep.equal JSON.parse getExpected(
                     'oneOveriddenRestNot',
-                    if platform is 'osx' then platform else 'rest'
+                    if platform is 'osx32' then platform else 'rest'
                 )
 
     it 'should leave file as is if platformOverrides does not exist', ->
-        for platform in ['osx', 'win', 'linux32', 'linux64']
+        for platform in ['osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64']
             contents = getFixture 'none/package.json'
             args =
                 options: contents
