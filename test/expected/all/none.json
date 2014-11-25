@@ -10,7 +10,7 @@
     "abc": [],
     "def": {},
     "platformOverrides": {
-        "win": {
+        "win32": {
             "window": {
                 "frame": true
             },
@@ -18,7 +18,7 @@
             "abc": [1],
             "def": {"x":1}
         },
-        "osx": {
+        "osx32": {
             "main": "other.html",
             "x": ["y", "z"],
             "abc": 2
