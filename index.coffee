@@ -3,10 +3,13 @@ _ = require 'lodash'
 
 
 platforms =
-    darwin: -> 'osx'
-    win: -> 'win'
-    win32: -> 'win'
-    win64: -> 'win'
+    darwin: -> 'osx' + if process.arch is 'ia32' then 32 else 64
+    osx: -> 'osx' + if process.arch is 'ia32' then 32 else 64
+    osx32: -> 'osx32'
+    osx64: -> 'osx64'
+    win: -> 'win' + if process.arch is 'ia32' then 32 else 64
+    win32: -> 'win32'
+    win64: -> 'win64'
     linux: -> 'linux' + if process.arch is 'ia32' then 32 else 64
 
 # Returns a {String}
@@ -19,13 +22,13 @@ normalizePlatform = (platform) ->
 
 # args - {Object}
 #       :options - {Object} or {String}
-#       :platform - Optional {String}. One of the following: [osx, win, linux32, linux64]. If not passed, current
+#       :platform - Optional {String}. One of the following: [osx32, osx64, win32, win64, linux32, linux64]. If not passed, current
 #                   platform is detected
 # cb - {Function}. Called with Error and result arguments
 # Returns an {String} or {Object}, depending on `objectMode` parameter
 module.exports = (args, cb) ->
     cb = (->) unless cb?
-    platform = if args.platform then normalizePlatform args.platform else detectPlatform()
+    platform = if args.platform then normalizePlatform args.platform else normalizePlatform detectPlatform()
     objectMode = _.isPlainObject args.options
 
     try
