@@ -47,7 +47,7 @@ var result = platformOverrides({
 Object or String. (i.e. `options.options`)
 
 #### platform
-(Optional) String. One of the following: [osx, win, linux32, linux64]. If not passed, the current platform is detected.
+(Optional) String. One of the following: [osx, osx32, osx64, win, win32, win64, linux, linux32, linux64]. If not passed, the current platform is detected.
 
 Note: `osx` is not `mac` just for the sake of backwards compatibility with [node-webkit-builder](https://github.com/mllrsohn/node-webkit-builder).
 
@@ -78,12 +78,13 @@ Example manifest:
       "osx": {
           ...
       },
-      "linux32": {
+      "linux": {
           ...
       },
-      "linux64": {
+      "win64": {
           ...
       },
+      ...
   }
 }
 ``` 

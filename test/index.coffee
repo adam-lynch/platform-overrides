@@ -3,6 +3,7 @@ chai = require 'chai'
 expect = chai.expect
 fs = require 'fs'
 path = require 'path'
+os = require 'os'
 
 getFixture = (pathSegment) ->
     fs.readFileSync(path.join './test/fixtures/', pathSegment).toString()
@@ -73,6 +74,62 @@ describe 'platform-overrides', ->
 
             platformOverrides args, (err, result) ->
                 expect(result).to.equal contents
+
+
+    it 'should apply overrides while giving precedence to specificity', ->
+        for platform in ['osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64']
+            args =
+                options: getFixture 'specificity/package.json'
+                platform: platform
+
+            platformOverrides args, (err, result) ->
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected('specificity', platform)
+
+
+    it 'should fall back to general platform override if platform with architecture is passed but no archecture-level overrides exist', ->
+        for platform in ['osx32', 'osx64', 'win32', 'win64', 'linux32', 'linux64']
+            args =
+                options: getFixture 'fallBackToPlatform/package.json'
+                platform: platform
+
+            platformOverrides args, (err, result) ->
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected('fallBackToPlatform', platform)
+
+
+    it 'should ignore architecture-level overrides if architecture-agnostic platform is passed', ->
+        for platform in ['osx', 'win', 'linux']
+            args =
+                options: getFixture 'architectureAgnostic/package.json'
+                platform: platform
+
+            platformOverrides args, (err, result) ->
+                expect(JSON.parse result).to.deep.equal JSON.parse getExpected('architectureAgnostic', platform)
+
+    it 'should always use architecture-level overrides when auto-detecting platform', ->
+        args =
+            options: getFixture 'autodetectingArchitecture/package.json'
+
+        actualPlatform = os.platform()
+        if actualPlatform is 'darwin'
+            actualPlatform = 'osx'
+        else if actualPlatform.match /^win/
+            actualPlatform = 'win'
+
+        platformOverrides args, (err, result) ->
+            expect(JSON.parse result).to.deep.equal JSON.parse getExpected(
+                'autodetectingArchitecture',
+                actualPlatform + if process.arch is 'ia32' then 32 else 64
+            )
+
+    it 'should throw error if invalid platform is passed', ->
+        args =
+            options: getFixture 'autodetectingArchitecture/package.json'
+            platform: 'nah'
+
+        platformOverrides args, (err, result) ->
+            expect(err instanceof Error).to.equal true
+            expect(err.message).to.equal 'Invalid platform passed'
+            expect(result).to.equal null
 
     it 'should return an error if invalid JSON is passed', ->
         args =

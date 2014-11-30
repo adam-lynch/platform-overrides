@@ -1,0 +1,48 @@
+{
+    "a": 0,
+    "b": 1,
+    "blah": {
+        "g": 6
+    },
+    "platformOverrides": {
+        "win": {
+            "a": "win",
+            "b": "win"
+        },
+        "win32": {
+            "b": "win32"
+        },
+        "win64": {
+            "b": "win64",
+            "blah": {
+                "g": "win64g"
+            }
+        },
+        "osx": {
+            "a": "osx",
+            "b": "osx"
+        },
+        "osx32": {
+            "b": "osx32"
+        },
+        "osx64": {
+            "b": "osx64",
+            "blah": {
+                "g": "win64g"
+            }
+        },
+        "linux": {
+            "a": "osx",
+            "b": "osx"
+        },
+        "linux32": {
+            "b": "osx32"
+        },
+        "linux64": {
+            "b": "osx64",
+            "blah": {
+                "g": "win64g"
+            }
+        }
+    }
+}
