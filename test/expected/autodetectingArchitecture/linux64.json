@@ -1,6 +1,6 @@
 {
     "a": "linux",
-    "b": "linux32",
+    "b": "linux64",
     "blah": {
         "g": "linux64g"
     }
