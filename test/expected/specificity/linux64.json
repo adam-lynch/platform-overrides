@@ -1,0 +1,7 @@
+{
+    "a": "linux",
+    "b": "linux64",
+    "blah": {
+        "g": "linux64g"
+    }
+}

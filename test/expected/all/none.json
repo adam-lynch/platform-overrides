@@ -8,32 +8,5 @@
     },
     "x": ["y"],
     "abc": [],
-    "def": {},
-    "platformOverrides": {
-        "win32": {
-            "window": {
-                "frame": true
-            },
-            "x": ["z"],
-            "abc": [1],
-            "def": {"x":1}
-        },
-        "osx32": {
-            "main": "other.html",
-            "x": ["y", "z"],
-            "abc": 2
-        },
-        "linux32": {
-            "main": "another.html",
-            "window": {
-                "frame": true
-            },
-            "frame": false,
-            "x": {}
-        },
-        "linux64": {
-            "window": {},
-            "x": []
-        }
-    }
+    "def": {}
 }
