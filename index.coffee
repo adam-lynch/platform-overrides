@@ -11,7 +11,7 @@ detectPlatform = ->
 
     return {
         agnostic: platform
-        specific: platform + if process.arch is 'ia32' then 32 else 64
+        specific: platform + if process.arch is 'x64' or process.env.hasOwnProperty('PROCESSOR_ARCHITEW6432') then 64 else 32
     }
 
 # platform - Optional {String}
