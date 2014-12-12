@@ -118,7 +118,7 @@ describe 'platform-overrides', ->
         platformOverrides args, (err, result) ->
             expect(JSON.parse result).to.deep.equal JSON.parse getExpected(
                 'autodetectingArchitecture',
-                actualPlatform + if process.arch is 'ia32' then 32 else 64
+                actualPlatform + if process.arch is 'x64' or process.env.hasOwnProperty('PROCESSOR_ARCHITEW6432') then 64 else 32
             )
 
     it 'should throw error if invalid platform is passed', ->
