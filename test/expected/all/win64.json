@@ -3,10 +3,10 @@
     "version": "0.1.0",
     "main": "index.html",
     "window": {
-        "frame": false,
+        "frame": true,
         "toolbar": false
     },
-    "x": ["y"],
-    "abc": [],
-    "def": {}
+    "x": ["z"],
+    "abc": [1],
+    "def": {"x":1}
 }

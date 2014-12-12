@@ -1,0 +1,14 @@
+{
+    "a": 0,
+    "platformOverrides": {
+        "win": {
+            "a": "win"
+        },
+        "osx": {
+            "a": "osx"
+        },
+        "linux": {
+            "a": "linux"
+        }
+    }
+}
