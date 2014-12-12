@@ -28,20 +28,20 @@
         "osx64": {
             "b": "osx64",
             "blah": {
-                "g": "win64g"
+                "g": "osx64g"
             }
         },
         "linux": {
-            "a": "osx",
-            "b": "osx"
+            "a": "linux",
+            "b": "linux"
         },
         "linux32": {
-            "b": "osx32"
+            "b": "linux32"
         },
         "linux64": {
-            "b": "osx64",
+            "b": "linux64",
             "blah": {
-                "g": "win64g"
+                "g": "linux64g"
             }
         }
     }

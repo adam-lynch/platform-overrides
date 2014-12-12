@@ -115,8 +115,6 @@ describe 'platform-overrides', ->
         else if actualPlatform.match /^win/
             actualPlatform = 'win'
 
-        console.log actualPlatform + if process.arch is 'ia32' then 32 else 64
-
         platformOverrides args, (err, result) ->
             expect(JSON.parse result).to.deep.equal JSON.parse getExpected(
                 'autodetectingArchitecture',

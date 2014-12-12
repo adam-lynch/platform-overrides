@@ -81,8 +81,7 @@ module.exports = ({options, platform}, cb) ->
         try
             options = if objectMode then options else JSON.parse options
         catch err
-            return
-#            return callback err, null
+            return callback err, null
 
 
 

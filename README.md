@@ -26,7 +26,7 @@ var platformOverrides = require('platform-overrides');
 
 var result = platformOverrides({
         options: '{"a": 0, "platformOverrides": { "osx": { "a": 1 } } }',
-        platform: 'osx' // auto-detected if omitted
+        platform: 'osx' // auto-detects a platform if omitted
     }, function(err, result){
         if(err) //...
 
@@ -39,7 +39,7 @@ var result = platformOverrides({
 
 `platformOverrides(options, callback)`
 
-**Returns** an Object or String, depending on what the type of the `options` property passed.
+**Returns** an Object or String, depending on the type of the `options` property you passed.
 
 ### Options
 
@@ -47,7 +47,11 @@ var result = platformOverrides({
 Object or String. (i.e. `options.options`)
 
 #### platform
-(Optional) String. One of the following: [osx, osx32, osx64, win, win32, win64, linux, linux32, linux64]. If not passed, the current platform is detected.
+(Optional) String. One of the following: [osx, osx32, osx64, win, win32, win64, linux, linux32, linux64].
+
+If not passed, the current platform is detected (the auto-detected platform is always an architecture-specific one (i.e. has `32` / `64` on the end).
+
+See [Examples](#examples) for how this parameter effects the behaviour of this plugin.
 
 Note: `osx` is not `mac` just for the sake of backwards compatibility with [node-webkit-builder](https://github.com/mllrsohn/node-webkit-builder).
 
@@ -56,7 +60,7 @@ Note: `osx` is not `mac` just for the sake of backwards compatibility with [node
 
 Function called on completion with error and result arguments; e.g. `function(err, result){}`
 
-## Example
+## Examples
 
 Example manifest:
 
@@ -75,13 +79,7 @@ Example manifest:
               "frame": true
           }
       },
-      "osx": {
-          ...
-      },
-      "linux": {
-          ...
-      },
-      "win64": {
+      "osx64": {
           ...
       },
       ...
@@ -89,7 +87,7 @@ Example manifest:
 }
 ``` 
 
-For example, when building for Windows, the manifest generated and put into the end app (from the manifest above) would be:
+For example, when building for Windows (passing `win` as the platform or not passing a platform on a Windows machine), the manifest generated and put into the end app (from the manifest above) would be:
 
 ```json
 {
@@ -102,6 +100,73 @@ For example, when building for Windows, the manifest generated and put into the 
     }
 }
 ```
+
+### Architecture-agnostic
+
+Example manifest:
+
+```json
+{
+  "name": "nw-demo",
+  "platformOverrides": {
+      "win": {
+          "name": "hello"
+      },
+      "win32": {
+          "name": "world"
+      },
+      "win64": {
+          "name": "like"
+      }
+      ...
+  }
+}
+```
+
+If `win` is passed as the platform, then only `win` is applied and `win32` & `win64` are ignored;
+
+```json
+{
+    "name": "hello"
+}
+```
+
+
+### Specificity & Cascading
+
+
+Example manifest:
+
+```json
+{
+  "name": "nw-demo",
+  "version": "0.1",
+  "platformOverrides": {
+      "win": {
+          "name": "hello",
+          "version": "0.2"
+      },
+      "win32": {
+          "version": "0.3"
+      },
+      "win64": {
+          "name": "like"
+      }
+      ...
+  }
+}
+```
+
+If `win32` is passed as the platform (or `win32` is auto-detected), then `win` is applied first, then `win32`;
+
+```json
+{
+      "name": "hello",
+      "version": "0.3"
+}
+```
+
+Even if there is no `win32`, then the `win` platform overrides will still be applied.
 
 ## Contributing
 
