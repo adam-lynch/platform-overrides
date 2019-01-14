@@ -48,9 +48,9 @@ getOverridesToApply = (platform, cb) ->
 #       :cb - {Function}, called with the result as the only argument
 applyOverrides = ({platform, options, cb}) ->
 
-    result = _.clone options, true
+    result = _.cloneDeep options
     if options.platformOverrides[platform]? and Object.keys(options.platformOverrides[platform]).length
-        result = _.merge(
+        result = _.mergeWith(
             result,
             options.platformOverrides[platform],
             (optionValue, overrideValue) ->
